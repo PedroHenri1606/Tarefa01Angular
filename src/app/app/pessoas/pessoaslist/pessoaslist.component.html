@@ -1,0 +1,15 @@
+<table>
+
+    <tr>
+        <th class="linhas">Nome: </th>
+        <th class="linhas">Idade:</th>
+    </tr>
+    
+    <tr *ngFor="let pessoa of lista">
+        <span *ngIf="pessoa.idade > 10" class="linhas">
+            <td >{{pessoa.nome}}</td>
+            <td >{{pessoa.idade}}</td>
+        </span>
+    </tr>
+
+</table>
