@@ -1,14 +1,14 @@
-<table>
+<table class = "table">
 
     <thead>
-        <tr>
-            <th>Nome: </th>
-            <th>Marca:</th>
+        <tr>    
+            <th scope="col" class="col">Nome: </th>
+            <th scope="col" class="col">Marca:</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let carro of lista">
+        <tr scope="row" *ngFor="let carro of lista">
             <td >{{carro.nome}}</td>
             <td >{{carro.marca}}</td>
         </tr>

@@ -1,14 +1,14 @@
-<table>
+<table class = "table">
 
     <thead>
-        <tr>
-            <th>Nome: </th>
-            <th>Autor:</th>
+        <tr>    
+            <th scope="col" class="col">Nome: </th>
+            <th scope="col" class="col">Autor:</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let livros of lista">
+        <tr scope="row" *ngFor="let livros of lista">
             <td >{{livros.nome}}</td>
             <td >{{livros.autor}}</td>
         </tr>

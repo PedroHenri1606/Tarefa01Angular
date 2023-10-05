@@ -1,24 +1,16 @@
-<table>
+<table class = "table">
 
     <thead>
-        <tr>
-            <th>Nome: </th>
-            <th>Idade:</th>
+        <tr>    
+            <th scope="col" class="col">Nome: </th>
+            <th scope="col" class="col">Idade:</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let pessoa of lista">
-            <th>
-                <span *ngIf="pessoa.idade > 10">
-                    <td >{{pessoa.nome}}</td>
-                </span>
-            </th>
-            <th>
-                <span *ngIf="pessoa.idade > 10">
-                    <td >{{pessoa.idade}}</td>
-                </span>
-            </th>
+        <tr scope="row" *ngFor="let pessoa of lista">
+            <td >{{pessoa.nome}}</td>
+            <td >{{pessoa.idade}}</td>
         </tr>
     </tbody>
 
