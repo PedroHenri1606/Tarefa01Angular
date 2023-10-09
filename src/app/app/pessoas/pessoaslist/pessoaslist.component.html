@@ -2,19 +2,19 @@
 
     <thead>
         <tr>
-            <th scope="col" class="col">Id:</th>   
-            <th scope="col" class="col">Nome: </th>
-            <th scope="col" class="col">Idade:</th>
-            <th scope="col" class="col">Editar:</th>
+            <th scope="col" class="col">Id</th>   
+            <th scope="col" class="col">Nome</th>
+            <th scope="col" class="col">Idade</th>
+            <th scope="col" class="col">Editar</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr scope="row" *ngFor="let pessoa of lista; let i = index">
-            <td> {{i}}</td>
-            <td >{{pessoa.nome}}</td>
-            <td >{{pessoa.idade}}</td>
-            <button type="button" class="btn btn-warning" (click)="abrirModalEditar(editar,pessoa,i)">Editar</button>
+        <tr scope="row" *ngFor="let pessoa of lista">
+            <td>{{pessoa.id}}</td>
+            <td>{{pessoa.nome}}</td>
+            <td>{{pessoa.idade}}</td>
+            <button type="button" class="btn btn-warning" (click)="abrirModalEditar(editar,pessoa,pessoa.id)">Editar</button>
         </tr>
     </tbody>
 
