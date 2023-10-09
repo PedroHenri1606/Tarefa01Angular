@@ -13,6 +13,7 @@ export class CarrosdetailsComponent implements OnInit{
 
   route = inject(ActivatedRoute);
   modalService = inject(NgbModal);
+  
   lista: Carros[] = [];
   banco = inject(CarrosService);
 

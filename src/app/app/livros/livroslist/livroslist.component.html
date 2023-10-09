@@ -1,17 +1,54 @@
 <table class = "table">
 
     <thead>
-        <tr>    
-            <th scope="col" class="col">Nome: </th>
-            <th scope="col" class="col">Autor:</th>
+        <tr>
+            <th scope="col" class="col">Id</th>   
+            <th scope="col" class="col">Titulo</th>
+            <th scope="col" class="col">Autor</th>
+            <th scope="col" class="col">Editar</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr scope="row" *ngFor="let livros of lista">
-            <td >{{livros.nome}}</td>
-            <td >{{livros.autor}}</td>
+        <tr scope="row" *ngFor="let livro of lista">
+            <td>{{livro.id}}</td>
+            <td>{{livro.titulo}}</td>
+            <td>{{livro.autor}}</td>
+            <button type="button" class="btn btn-warning" (click)="abrirModalEditar(editar,livro,livro.id)">Editar</button>
         </tr>
     </tbody>
 
 </table>
+
+<button (click)="abrirModal(adicionar)"> Adicionar livro </button>
+
+
+<ng-template #adicionar let-modal>
+    <div class="modal-header">
+		<h4 class="modal-title">Cadastrar livro</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-livrosdetails (retorno)="addNaLista($event)" ></app-livrosdetails>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+<ng-template #editar let-modal>
+    <div class="modal-header">
+		<h4 class="modal-title">Editar livro</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-livrosdetails [livro]="livroSelecionado" (retorno)="addNaLista($event)" ></app-livrosdetails>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

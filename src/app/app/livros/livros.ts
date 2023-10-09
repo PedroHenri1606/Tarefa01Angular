@@ -1,9 +1,11 @@
 export class Livros{
-    nome!: string;
+    id!: number;
+    titulo!: string;
     autor!: string;
 
-    constructor(nome: string, autor: string){
-        this.nome = nome;
+    constructor(id: number,titulo: string, autor: string){
+        this.id = id;
+        this.titulo = titulo;
         this.autor = autor;
     }
 }
