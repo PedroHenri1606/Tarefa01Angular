@@ -1,17 +1,54 @@
 <table class = "table">
 
     <thead>
-        <tr>    
+        <tr>
+            <th scope="col" class="col">Id:</th>   
             <th scope="col" class="col">Nome: </th>
             <th scope="col" class="col">Idade:</th>
+            <th scope="col" class="col">Editar:</th>
         </tr>
     </thead>
 
     <tbody>
-        <tr scope="row" *ngFor="let pessoa of lista">
+        <tr scope="row" *ngFor="let pessoa of lista; let i = index">
+            <td> {{i}}</td>
             <td >{{pessoa.nome}}</td>
             <td >{{pessoa.idade}}</td>
+            <button type="button" class="btn btn-warning" (click)="abrirModalEditar(editar,pessoa,i)">Editar</button>
         </tr>
     </tbody>
 
 </table>
+
+<button (click)="abrirModal(adicionar)"> Adicionar pessoa </button>
+
+
+<ng-template #adicionar let-modal>
+    <div class="modal-header">
+		<h4 class="modal-title">Cadastrar Pessoa</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-pessoasdetails (retorno)="addNaLista($event)" ></app-pessoasdetails>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>
+
+<ng-template #editar let-modal>
+    <div class="modal-header">
+		<h4 class="modal-title">Editar Pessoa</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		
+        <app-pessoasdetails [pessoa]="pessoaSelecionada" (retorno)="addNaLista($event)" ></app-pessoasdetails>
+            
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+	</div>
+</ng-template>

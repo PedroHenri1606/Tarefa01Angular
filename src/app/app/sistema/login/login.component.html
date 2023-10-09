@@ -1,4 +1,10 @@
-<p>login works!</p>
+<div>
+    <p>Login</p>
+    <input type="text" name="login" [(ngModel)] = "usuario.login"/>
 
+    <p>Senha</p>
+    <input type="text" name="senha" [(ngModel)] = "usuario.senha"/>
+    <br>
 
-<input routerLink="/admin/pessoas" type="button" value="Logar" />
+    <button class="btn" (click)="logar()" type="button" value="Logar">Logar</button>
+</div>
