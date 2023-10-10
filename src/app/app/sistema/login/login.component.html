@@ -1,10 +1,19 @@
 <div>
-    <p>Login</p>
-    <input type="text" name="login" [(ngModel)] = "usuario.login"/>
+    
+    <div class="fundo">
+        <h2>Aprendendo <br>Angular</h2>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="login" placeholder="login" [(ngModel)]="usuario.login">
+            <label for="login">Login</label>
+        </div>
+        
+        <div class="form-floating">
+            <input type="text" class="form-control" id="senha" placeholder="senha" [(ngModel)]="usuario.senha">
+            <label for="senha">Senha</label>
+        </div>
 
-    <p>Senha</p>
-    <input type="text" name="senha" [(ngModel)] = "usuario.senha"/>
-    <br>
-
-    <button class="btn" (click)="logar()" type="button" value="Logar">Logar</button>
+        <button class="btn btn-outline-success" (click)="logar()" type="button" value="Logar">Logar</button>
+    </div>
 </div>
+
+

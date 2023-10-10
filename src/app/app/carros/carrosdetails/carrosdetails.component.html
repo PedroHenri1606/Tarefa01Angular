@@ -1,7 +1,11 @@
-<p>Nome</p>
-<input type="text" [(ngModel)]= "carro.nome" />
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" id="nome" placeholder="nome" [(ngModel)]="carro.nome">
+    <label for="nome">Nome</label>
+</div>
 
-<p>Marca</p>
-<input type="text" [(ngModel)]= "carro.marca" />
+<div class="form-floating">
+    <input type="text" class="form-control" id="marca" placeholder="marca" [(ngModel)]="carro.marca">
+    <label for="marca">Marca</label>
+</div>
 
-<button (click)="salvar()"> Salvar</button>
+<button class= "btn btn-outline-success" (click)="salvar()"> Salvar</button>

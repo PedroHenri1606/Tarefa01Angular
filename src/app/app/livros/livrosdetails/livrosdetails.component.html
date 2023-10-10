@@ -1,7 +1,11 @@
-<p>Titulo</p>
-<input type="text" [(ngModel)]= "livro.titulo" />
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" id="titulo" placeholder="titulo" [(ngModel)]="livro.titulo">
+    <label for="titulo">Titulo</label>
+</div>
 
-<p>Autor</p>
-<input type="text" [(ngModel)]= "livro.autor" />
+<div class="form-floating">
+    <input type="text" class="form-control" id="autor" placeholder="autor" [(ngModel)]="livro.autor">
+    <label for="autor">Autor</label>
+</div>
 
-<button (click)="salvar()"> Salvar</button>
+<button class= "btn btn-outline-success" (click)="salvar()"> Salvar</button>

@@ -1,3 +1,9 @@
+<div class="col opcoes">
+
+    <button type="button" class="btn btn-outline-success botao-cadastrar" (click)="abrirModal(adicionar)"> Adicionar livro </button>
+
+</div>
+
 <table class = "table">
 
     <thead>
@@ -5,7 +11,7 @@
             <th scope="col" class="col">Id</th>   
             <th scope="col" class="col">Titulo</th>
             <th scope="col" class="col">Autor</th>
-            <th scope="col" class="col">Editar</th>
+            <th scope="col" class="col">Detalhar</th>
         </tr>
     </thead>
 
@@ -14,14 +20,11 @@
             <td>{{livro.id}}</td>
             <td>{{livro.titulo}}</td>
             <td>{{livro.autor}}</td>
-            <button type="button" class="btn btn-warning" (click)="abrirModalEditar(editar,livro,livro.id)">Editar</button>
+            <td><button type="button" class="btn btn-outline-warning" (click)="abrirModalEditar(editar,livro,livro.id)">Detalhar</button></td>
         </tr>
     </tbody>
 
 </table>
-
-<button (click)="abrirModal(adicionar)"> Adicionar livro </button>
-
 
 <ng-template #adicionar let-modal>
     <div class="modal-header">
@@ -40,7 +43,7 @@
 
 <ng-template #editar let-modal>
     <div class="modal-header">
-		<h4 class="modal-title">Editar livro</h4>
+		<h4 class="modal-title">Detalhar livro</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">

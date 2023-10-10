@@ -1,27 +1,32 @@
-<table class = "table">
+<div class="col opcoes">
 
-    <thead>
-        <tr>
-            <th scope="col" class="col">Id</th>   
-            <th scope="col" class="col">Nome</th>
-            <th scope="col" class="col">Idade</th>
-            <th scope="col" class="col">Editar</th>
-        </tr>
-    </thead>
+    <button type="button" class="btn btn-outline-success botao-cadastrar" (click)="abrirModal(adicionar)"> Adicionar pessoa </button>
 
-    <tbody>
-        <tr scope="row" *ngFor="let pessoa of lista">
-            <td>{{pessoa.id}}</td>
-            <td>{{pessoa.nome}}</td>
-            <td>{{pessoa.idade}}</td>
-            <button type="button" class="btn btn-warning" (click)="abrirModalEditar(editar,pessoa,pessoa.id)">Editar</button>
-        </tr>
-    </tbody>
+</div>
 
-</table>
+<div class="tabela">
+    <table class = "table">
 
-<button (click)="abrirModal(adicionar)"> Adicionar pessoa </button>
+        <thead>
+            <tr>
+                <th scope="col" class="col">Id</th>   
+                <th scope="col" class="col">Nome</th>
+                <th scope="col" class="col">Idade</th>
+                <th scope="col" class="col">Detalhar</th>
+            </tr>
+        </thead>
 
+        <tbody>
+            <tr scope="row" *ngFor="let pessoa of lista">
+                <td>{{pessoa.id}}</td>
+                <td>{{pessoa.nome}}</td>
+                <td>{{pessoa.idade}}</td>
+                <td><button type="button" class="btn btn-outline-warning" (click)="abrirModalEditar(editar,pessoa,pessoa.id)">Detalhar</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
 
 <ng-template #adicionar let-modal>
     <div class="modal-header">
@@ -40,7 +45,7 @@
 
 <ng-template #editar let-modal>
     <div class="modal-header">
-		<h4 class="modal-title">Editar Pessoa</h4>
+		<h4 class="modal-title">Detalhar pessoa</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
