@@ -11,28 +11,26 @@ import { PessoaService } from '../pessoa.service';
 })
 export class PessoasdetailsComponent implements OnInit {
 
-  roteador = inject(ActivatedRoute);
-  modalService = inject(NgbModal);
-  lista: Pessoa[] = [];
-  banco = inject(PessoaService);
-
-  @Input() pessoa: Pessoa = new Pessoa(0,"", 0);
-
+  @Input() pessoa: Pessoa = new Pessoa();
   @Output() retorno = new EventEmitter<Pessoa>();
-  
-  constructor(){
-    let id = this.roteador.snapshot.paramMap.get('id');
 
-    if(id){
-      this.pessoa = this.banco.findId(+id);
-    }
-  }
+  service = inject(PessoaService);
 
-  ngOnInit() :void{
-    this.pessoa = Object.assign({}, this.pessoa);
+  constructor(){}
+
+  ngOnInit(): void {
+    
   }
 
   salvar(){
-    this.retorno.emit(this.pessoa);
+    this.service.save(this.pessoa).subscribe({
+      next: pessoa => {
+        this.retorno.emit(pessoa);
+      },
+      error: erro => {
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
+      }
+    });
   }
 }

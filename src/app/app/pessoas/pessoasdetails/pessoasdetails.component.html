@@ -1,11 +1,13 @@
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="nome" placeholder="nome" [(ngModel)]="pessoa.nome">
-    <label for="nome">Nome</label>
-</div>
+<form (ngSubmit)="salvar()">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="nome" placeholder="nome" [(ngModel)]="pessoa.nome">
+        <label for="nome">Nome</label>
+    </div>
 
-<div class="form-floating">
-    <input type="text" class="form-control" id="idade" placeholder="idade" [(ngModel)]="pessoa.idade">
-    <label for="idade">Idade</label>
-</div>
+    <div class="form-floating">
+        <input type="text" class="form-control" id="idade" placeholder="idade" [(ngModel)]="pessoa.idade">
+        <label for="idade">Idade</label>
+    </div>
 
-<button class= "btn btn-outline-success" (click)="salvar()"> Salvar</button>
+    <button class= "btn btn-outline-success" (click)="salvar()"> Salvar</button>
+</form>

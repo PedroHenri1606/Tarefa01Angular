@@ -14,7 +14,9 @@ import { CarrosdetailsComponent } from './app/carros/carrosdetails/carrosdetails
 import { LivrosdetailsComponent } from './app/livros/livrosdetails/livrosdetails.component';
 import { LivroslistComponent } from './app/livros/livroslist/livroslist.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -33,10 +35,11 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule,
-    NgbModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
