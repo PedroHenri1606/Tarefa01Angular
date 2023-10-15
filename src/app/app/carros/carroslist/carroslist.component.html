@@ -1,39 +1,44 @@
 <div class="col opcoes">
 
-    <button type="button" class="btn btn-outline-success botao-cadastrar" (click)="abrirModal(adicionar)"> Adicionar carro </button>
+    <button type="button" class="btn btn-outline-success botao-cadastrar" (click)="adicionar(cadastrar)"> Adicionar carro </button>
 
 </div>
 
-<table class = "table">
+<div class="tabela">
+    <table class = "table">
 
-    <thead>
-        <tr>
-            <th scope="col" class="col">Id</th>    
-            <th scope="col" class="col">Nome</th>
-            <th scope="col" class="col">Marca</th>
-            <th scope="col" class="col">Detalhar</th>
-        </tr>
-    </thead>
+        <thead>
+            <tr>
+                <th scope="col" class="col">Id</th>    
+                <th scope="col" class="col">Nome</th>
+                <th scope="col" class="col">Marca</th>
+                <th scope="col" class="col">Opções</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        <tr scope="row" *ngFor="let carro of lista">
-            <td>{{carro.id}}</td>
-            <td>{{carro.nome}}</td>
-            <td>{{carro.marca}}</td>
-            <td><button type="button" class="btn btn-outline-warning" (click)="abrirModalEditar(editar,carro,carro.id)">Detalhar</button></td>
-        </tr>
-    </tbody>
+        <tbody>
+            <tr scope="row" *ngFor="let carro of lista">
+                <td>{{carro.id}}</td>
+                <td>{{carro.nome}}</td>
+                <td>{{carro.marca}}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-warning" (click)="editar(detalhar,carro,carro.id)">Detalhar</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="deletar(carro)">Deletar</button>
+                </td>
+            </tr>
+        </tbody>
 
-</table>
+    </table>
+</div>
 
-<ng-template #adicionar let-modal>
+<ng-template #cadastrar let-modal>
     <div class="modal-header">
 		<h4 class="modal-title">Cadastrar carro</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
 		
-        <app-carrosdetails (retorno)="addNaLista($event)" ></app-carrosdetails>
+        <app-carrosdetails (retorno)="salvar($event)" ></app-carrosdetails>
             
 	</div>
 	<div class="modal-footer">
@@ -41,18 +46,17 @@
 	</div>
 </ng-template>
 
-<ng-template #editar let-modal>
+<ng-template #detalhar let-modal>
     <div class="modal-header">
 		<h4 class="modal-title">Detalhar carro</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">
 		
-        <app-carrosdetails [carro]="carroSelecionado" (retorno)="addNaLista($event)" ></app-carrosdetails>
+        <app-carrosdetails [carro]="carroSelecionado" (retorno)="salvar($event)" ></app-carrosdetails>
             
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
 	</div>
 </ng-template>
-

@@ -17,13 +17,13 @@
         </thead>
 
         <tbody>
-            <tr scope="row" *ngFor="let pessoa of lista; let i = index">
+            <tr scope="row" *ngFor="let pessoa of lista">
                 <td>{{pessoa.id}}</td>
                 <td>{{pessoa.nome}}</td>
                 <td>{{pessoa.idade}}</td>
                 <td>
+                    <button type="button" class="btn btn-outline-warning" (click)="editar(detalhar,pessoa,pessoa.id)">Detalhar</button>
                     <button type="button" class="btn btn-outline-danger" (click)="deletar(pessoa)">Deletar</button>
-                    <button type="button" class="btn btn-outline-warning" (click)="editar(detalhar,pessoa,i)">Detalhar</button>
                 </td>
             </tr>
         </tbody>
@@ -33,7 +33,7 @@
 
 <ng-template #cadastrar let-modal>
     <div class="modal-header">
-		<h4 class="modal-title">Cadastrar Pessoa</h4>
+		<h4 class="modal-title">Cadastrar pessoa</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
 	</div>
 	<div class="modal-body">

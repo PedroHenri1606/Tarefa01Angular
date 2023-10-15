@@ -1,11 +1,8 @@
-export class Carros{
+//COMO SE FOSSE A ENTITY DO JAVA
+
+export class Carro{
     id!: number;
     nome!: string;
     marca!: string;
     
-    constructor(id: number,nome: string, marca: string){
-        this.id = id;
-        this.nome = nome;
-        this.marca = marca;
-    }
 }

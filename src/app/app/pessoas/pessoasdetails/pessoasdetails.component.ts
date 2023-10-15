@@ -1,7 +1,5 @@
 import { Component,EventEmitter,Input,OnInit,Output,inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Pessoa } from '../pessoa';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PessoaService } from '../pessoa.service';
 
 @Component({
@@ -22,7 +20,7 @@ export class PessoasdetailsComponent implements OnInit {
     
   }
 
-  salvar(){
+  cadastrar(){
     this.service.save(this.pessoa).subscribe({
       next: pessoa => {
         this.retorno.emit(pessoa);

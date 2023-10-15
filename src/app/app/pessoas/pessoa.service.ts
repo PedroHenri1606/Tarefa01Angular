@@ -14,7 +14,7 @@ export class PessoaService{
     constructor(){}
 
     save(salvar: Partial<Pessoa>){
-        if(salvar.id){
+        if(salvar.id){[]
             console.log("update");
             return this.update(salvar);
         }

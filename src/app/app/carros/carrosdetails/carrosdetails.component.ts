@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Carros } from '../carros';
+import { Carro } from '../carros';
 import { CarrosService } from '../carros.service';
 
 @Component({
@@ -11,27 +9,26 @@ import { CarrosService } from '../carros.service';
 })
 export class CarrosdetailsComponent implements OnInit{
 
-  route = inject(ActivatedRoute);
-  modalService = inject(NgbModal);
-  
-  lista: Carros[] = [];
-  banco = inject(CarrosService);
+  @Input() carro: Carro = new Carro();
+  @Output() retorno = new EventEmitter<Carro>();
 
-  @Input() carro: Carros = new Carros(0,"","");
-  @Output() retorno = new EventEmitter<Carros>();
+  service = inject(CarrosService);
 
-  constructor(){
-    let id = this.route.snapshot.paramMap.get('id');
-    if(id){
-      this.carro = this.banco.findId(+id);
-    }
-  }
+  constructor(){}
 
   ngOnInit(): void {
-    this.carro = Object.assign({}, this.carro);
+    
   }
 
-  salvar(){
-    this.retorno.emit(this.carro);
+  cadastrar(){
+    this.service.save(this.carro).subscribe({
+      next: carro => {
+        this.retorno.emit(carro);
+      },
+      error: erro => {
+        alert("Exemplo de tratamento de erro/exception! Observe o erro no console!");
+        console.error(erro);
+      }
+    })
   }
 }

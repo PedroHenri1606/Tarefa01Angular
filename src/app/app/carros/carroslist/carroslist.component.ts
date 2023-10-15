@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Carros } from '../carros';
+import { Carro } from '../carros';
 import { CarrosService } from '../carros.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,39 +10,64 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CarroslistComponent {
 
-  lista: Carros[] = [];
-  listaService = inject(CarrosService);
-  indiceSelecionado!: number;
-  carroSelecionado!: Carros;
-
+  //ELA RECEBE OS DADOS RECEBIDOS PELA SERVICE E FAZ A MANIPULAÇÃO E PREPARAÇÃO PARA ENVIAR ELES PARA O VIEW (ARQUVIO HTML DO COMPONENTE);
+  
   modalService = inject(NgbModal);
 
+  //INJEÇÃO DA SERVICE - SEMELHANTE AO AUTOWIRED DO JAVA
+  service = inject(CarrosService);
+
+  lista: Carro[] = [];
+
+  indiceSelecionado!: number;
+  carroSelecionado!: Carro;
+  
   constructor(){
-    this.lista = this.listaService.lista;
+    this.listarTodos(); 
   }
 
-  abrirModal(modal: any){
-    this.carroSelecionado = new Carros(0,"","");
+  listarTodos(){
+    this.service.listar().subscribe({
+      next: lista => {
+        this.lista = lista;
+      }, 
+      error: erro =>{
+        alert("Exemplo de tratamento de erro/exception! Observe o erro no console!");
+        console.error(erro);
+      }
+    });
+  }
+
+  adicionar(modal: any){
+    this.carroSelecionado = new Carro();
     this.modalService.open(modal, {size: 'lg'});
   }
 
-  abrirModalEditar(editar: any, carros: any, indice: number){
-    this.indiceSelecionado = indice;
-    this.carroSelecionado = carros;
-    this.modalService.open(editar, {size: 'lg'});
+  editar(modal: any, carro: Carro, id: number){
+    this.carroSelecionado = carro;
+    this.indiceSelecionado = id;
+    this.modalService.open(modal, {size: 'lg'});
   }
 
-  adicionarCarro(nome: string,marca: string){
-    this.listaService.adicionarCarro(nome,marca);
+  deletar(carro: Carro){
+    this.service.deletar(carro.id).subscribe(() =>
+    {
+      console.log("Carro deletado com sucesso!");
+      this.listarTodos();
+    })
   }
 
-  addNaLista(carro: Carros){
+  salvar(carro: Carro){
     if(carro.id > 0){
       this.lista[this.indiceSelecionado] = carro;
+    
     } else {
-      this.adicionarCarro(carro.nome,carro.marca);
+      this.lista.push(carro);
     }
+
     this.modalService.dismissAll();
+    this.listarTodos();
   }
+
 
 }

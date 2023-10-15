@@ -47,11 +47,11 @@ export class PessoaslistComponent {
   }
 
   deletar(pessoa: Pessoa){
-    this.service.deletar(pessoa.id).subscribe(
-      ()=>{
+    this.service.deletar(pessoa.id).subscribe(()=>
+      {
         console.log("Pessoa deletada com sucesso!");
-      }
-    )
+        this.listarTodos();
+      })
   }
 
   salvar(pessoa: Pessoa){
@@ -63,5 +63,6 @@ export class PessoaslistComponent {
     }
 
     this.modalService.dismissAll();
+    this.listarTodos();
   }
 }

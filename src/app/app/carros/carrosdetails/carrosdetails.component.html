@@ -1,11 +1,13 @@
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="nome" placeholder="nome" [(ngModel)]="carro.nome">
-    <label for="nome">Nome</label>
-</div>
+<form (ngSubmit)="cadastrar()">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="Modelo" placeholder="nome" [(ngModel)]="carro.nome">
+        <label for="nome">Modelo</label>
+    </div>
 
-<div class="form-floating">
-    <input type="text" class="form-control" id="marca" placeholder="marca" [(ngModel)]="carro.marca">
-    <label for="marca">Marca</label>
-</div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="Marca" placeholder="marca" [(ngModel)]="carro.marca">
+        <label for="marca">Marca</label>
+    </div>
 
-<button class= "btn btn-outline-success" (click)="salvar()"> Salvar</button>
+    <button class= "btn btn-outline-success"> Salvar</button>
+</form>

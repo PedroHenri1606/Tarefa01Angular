@@ -1,32 +1,53 @@
-import { Injectable } from "@angular/core";
-import { Carros } from "./carros";
+import { Injectable, inject } from "@angular/core";
+import { Carro } from "./carros";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn:'root'
 })
 export class CarrosService{
 
-    lista: Carros[] = [];
-    proximoId: number = 2;
+    //COMO SE FOSSE A SERVICE DO JAVA
+    //
+    //ELA FAZ CONEXÃO COM O BACK-END E EXECUTA OS ENDPOINTS, POREM NÃO FAZ REGRA DE NEGOCIOS OU MANIPULAÇÃO DOS DADOS
+    //ESSA FUNÇÃO É REPASSADA AO ARQUIVO TYPESCRIPT DO COMPONENTE
 
-    constructor(){
+    API: string = "http://localhost:8080/api/carro";
+    http = inject(HttpClient);
 
-        this.lista.push(new Carros(1,"911","Porshe"));
-    }
+    constructor(){}
 
-    adicionarCarro(nome: string, marca: string): void{
-        const novoCarro = new Carros(this.proximoId,nome,marca);
-        this.lista.push(novoCarro);
-        this.proximoId++;
-    }
-
-    findId(id: number): Carros{
-        for(let i= 0; i < this.lista.length; i++){
-            if(this.lista[i].id == id){
-                return this.lista[i];
-            }
+    save(salvar: Partial<Carro>){
+        if(salvar.id){
+            console.log("update");
+            return this.update(salvar);
         }
-        this.proximoId++;
-        return new Carros(0,"","");
+        console.log("salvar");
+        return this.create(salvar);
+    }
+
+    erro(): Observable<Carro[]>{
+        return this.http.get<Carro[]>(this.API + '/erro');
+    }
+
+    listar(): Observable<Carro[]>{
+        return this.http.get<Carro[]>(this.API + '/listar');
+    }
+
+    buscarPorId(id: number){
+        return this.http.get<Carro>(this.API + `/buscar?id=${id}`);
+    }
+
+    create(salvar: Partial<Carro>){
+        return this.http.post<Carro>(this.API + '/cadastrar', salvar);
+    }
+
+    update(salvar: Partial<Carro>){
+        return this.http.put<Carro>(this.API + `/editar?id=${salvar.id}`, salvar);
+    }
+
+    deletar(id: number){
+        return this.http.delete<Carro>(this.API + `/deletar?id=${id}`);
     }
 }
