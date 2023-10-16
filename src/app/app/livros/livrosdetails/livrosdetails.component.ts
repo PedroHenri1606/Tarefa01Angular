@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LivrosService } from '../livros.service';
 import { Livros } from '../livros';
 
@@ -11,27 +9,26 @@ import { Livros } from '../livros';
 })
 export class LivrosdetailsComponent implements OnInit{
 
-  route = inject(ActivatedRoute);
-  modalService = inject(NgbModal);
-  
-  lista: Livros[] = [];
-  banco = inject(LivrosService);
-
-  @Input() livro: Livros = new Livros(0,"","");
+  @Input() livro: Livros = new Livros();
   @Output() retorno = new EventEmitter<Livros>();
+
+  service = inject(LivrosService);
   
-  constructor(){
-    let id = this.route.snapshot.paramMap.get('id');
-    if(id){
-      this.livro = this.banco.findId(+id);
-    }
-  }
+  constructor(){}
 
   ngOnInit(): void {
-    this.livro = Object.assign({}, this.livro);
+  
   }
 
-  salvar(){
-    this.retorno.emit(this.livro);
+  cadastrar(){
+    this.service.save(this.livro).subscribe({
+      next: livro => {
+        this.retorno.emit(livro);
+      },
+      error: erro => {
+        alert("Exemplo de tratamento de erro/exception! Observe o erro no console!");
+        console.error(erro);
+      }
+    });
   }
 }

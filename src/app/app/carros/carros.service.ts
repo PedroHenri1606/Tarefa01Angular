@@ -11,7 +11,7 @@ export class CarrosService{
     //COMO SE FOSSE A SERVICE DO JAVA
     //
     //ELA FAZ CONEXÃO COM O BACK-END E EXECUTA OS ENDPOINTS, POREM NÃO FAZ REGRA DE NEGOCIOS OU MANIPULAÇÃO DOS DADOS
-    //ESSA FUNÇÃO É REPASSADA AO ARQUIVO TYPESCRIPT DO COMPONENTE
+    //ESSA FUNÇÃO É REPASSADA AO ARQUIVO TYPESCRIPT DO COMPONENTE   
 
     API: string = "http://localhost:8080/api/carro";
     http = inject(HttpClient);
@@ -22,9 +22,11 @@ export class CarrosService{
         if(salvar.id){
             console.log("update");
             return this.update(salvar);
-        }
+        
+        } else {
         console.log("salvar");
         return this.create(salvar);
+        }
     }
 
     erro(): Observable<Carro[]>{

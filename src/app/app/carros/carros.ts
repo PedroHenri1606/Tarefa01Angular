@@ -2,7 +2,7 @@
 
 export class Carro{
     id!: number;
-    nome!: string;
+    modelo!: string;
     marca!: string;
     
 }

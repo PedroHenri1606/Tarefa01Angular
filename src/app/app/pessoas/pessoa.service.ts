@@ -16,10 +16,12 @@ export class PessoaService{
     save(salvar: Partial<Pessoa>){
         if(salvar.id){[]
             console.log("update");
-            return this.update(salvar);
-        }
+            return this.editar(salvar);
+        } else {
+
         console.log("salvar");
-        return this.create(salvar);
+        return this.cadastrar(salvar);
+        }
     }
 
     erro(): Observable<Pessoa[]>{
@@ -34,11 +36,11 @@ export class PessoaService{
         return this.http.get<Pessoa>(this.API + `/buscar?id=${id}`)
     }
 
-    create(salvar: Partial<Pessoa>){
+    cadastrar(salvar: Partial<Pessoa>){
         return this.http.post<Pessoa>(this.API + '/cadastrar', salvar);
     }
 
-    update(salvar: Partial<Pessoa>){
+    editar(salvar: Partial<Pessoa>){
         return this.http.put<Pessoa>(this.API + `/editar?id=${salvar.id}`, salvar);
     }
 

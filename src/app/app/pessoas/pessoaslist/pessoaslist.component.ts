@@ -7,8 +7,7 @@ import { PessoaService } from '../pessoa.service';
   selector: 'app-pessoaslist',
   templateUrl: './pessoaslist.component.html',
   styleUrls: ['./pessoaslist.component.scss']
-})
-
+})  
 export class PessoaslistComponent {
 
   lista: Pessoa[] = [];

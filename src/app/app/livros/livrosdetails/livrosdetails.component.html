@@ -1,11 +1,13 @@
-<div class="form-floating mb-3">
-    <input type="text" class="form-control" id="titulo" placeholder="titulo" [(ngModel)]="livro.titulo">
-    <label for="titulo">Titulo</label>
-</div>
+<form (ngSubmit)="cadastrar()">
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="Titulo" placeholder="titulo" [(ngModel)]="livro.titulo">
+        <label for="titulo">Titulo</label>
+    </div>
 
-<div class="form-floating">
-    <input type="text" class="form-control" id="autor" placeholder="autor" [(ngModel)]="livro.autor">
-    <label for="autor">Autor</label>
-</div>
+    <div class="form-floating">
+        <input type="text" class="form-control" name="Autor" placeholder="autor" [(ngModel)]="livro.autor">
+        <label for="autor">Autor</label>
+    </div>
 
-<button class= "btn btn-outline-success" (click)="salvar()"> Salvar</button>
+    <button class= "btn btn-outline-success"> Salvar</button>
+</form>
