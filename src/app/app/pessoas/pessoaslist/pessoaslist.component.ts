@@ -45,6 +45,12 @@ export class PessoaslistComponent {
     this.modalService.open(editar, {size: 'lg'});
   }
 
+  buscarPorId(modal: any, id: number){
+    this.pessoaSelecionada = this.lista[id -1];
+    this.indiceSelecionado = id;
+    this.modalService.open(modal, {size: 'lg'});
+  }
+
   deletar(pessoa: Pessoa){
     this.service.deletar(pessoa.id).subscribe(()=>
       {
