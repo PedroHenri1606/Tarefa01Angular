@@ -1,7 +1,13 @@
-<div class="col opcoes">
+<div class="opcoes">
+    
+    <div class="row justify-content-end">
+        <div class="col-2">
+            <input class="form-control buscarId" type="search" placeholder="Buscar por Id" aria-label="Search" [(ngModel)]="indiceSelecionado">
+        </div>
 
-    <button type="button" class="btn btn-outline-success botao-cadastrar" (click)="adicionar(cadastrar)"> Adicionar livro </button>
-
+        <button class="btn btn-outline-success botoes col-1 me-5" type="submit" (click)="buscarPorId(detalhar,indiceSelecionado)"> Buscar</button>
+        <button type="button" class="btn btn-outline-success botoes col-2" (click)="adicionar(cadastrar)"> Adicionar livro </button>
+    </div>
 </div>
 
 <div class="tabela">
