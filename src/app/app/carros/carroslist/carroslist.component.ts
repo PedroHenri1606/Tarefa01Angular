@@ -49,6 +49,12 @@ export class CarroslistComponent {
     this.modalService.open(modal, {size: 'lg'});
   }
 
+  buscarPorId(modal: any, id: number){
+    this.carroSelecionado = this.lista[id - 1];
+    this.indiceSelecionado = id;
+    this.modalService.open(modal, {size: 'lg'});
+  }
+
   deletar(carro: Carro){
     this.service.deletar(carro.id).subscribe(() =>
     {
